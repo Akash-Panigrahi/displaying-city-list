@@ -1,0 +1,7 @@
+.dropdown-menu {
+  padding: 0px;
+}
+
+.dropdown-menu li:hover {
+  border-left: 3px solid #59C8E4;
+}

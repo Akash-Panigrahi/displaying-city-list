@@ -2,31 +2,70 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="ngHtml">
+<!--<![endif]-->
 
-    <!-- Links -->
-    <link rel="stylesheet" type="text/css" href="tools/bootstrap/bootstrap.css">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Sripts -->
-    <script src="tools/angular/angular.js"></script>
-    <script src="tools/jquery/jquery-3.2.1.js"></script>
-    <script src="tools/bootstrap/bootstrap.js"></script>
-    <script src="app.module.js"></script>
-    <script src="app.controller.js></script>
+  <!-- Links -->
+  <link rel="stylesheet" type="text/css" href="tools/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="css/main.css">
 
-  </head>
-  <body>
-    <!--[if lt IE 7]>
+  <!-- Sripts -->
+  <script src="tools/angular/angular.js"></script>
+  <script src="tools/jquery/jquery-3.2.1.js"></script>
+  <script src="tools/bootstrap/bootstrap.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app.controller.js"></script>
+
+</head>
+
+<body>
+  <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
 
+  <div class="container" ng-container='DisplayingCityList'>
 
-  </body>
+    <div class="row">
+      <div class="select-state col-sm-3 col-xs-3">
+        <div class="form-group">
+          <div class="input-group">
+            <input ng-model="selectedCity" type="text" class="form-control selected-city">
+            <div class="input-group-btn">
+              <ul class="dropdown-menu dropdown-menu-center list-unstyled list-group">
+                <li class="list-group-item" ng-repeat="(state, city) in $ctrl.cities" ng-click="selectCity($index)">{{state}}</li>
+              </ul>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="show-cities col-sm-9 col-xs-9">
+        <ul class="cities list-unstyled list-group">
+          <li ng-repeat="(city,state) in $ctrl.cities track by $index | objectFilter:selectedCity">{{city}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      $(window).on('resize load', function () {
+        var inputWidth = $('.selected-city').outerWidth();
+        $('.dropdown-menu-center').css('left', -inputWidth);
+      });
+    })();
+  </script>
+
+</body>
+
 </html>

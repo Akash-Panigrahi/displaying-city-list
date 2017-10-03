@@ -1,0 +1,25 @@
+{
+  "name": "displaying-city-list",
+  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "author": "Akash Panigrahi",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/angular": "^1.6.32",
+    "browser-sync": "^2.8.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-sass": "^2.0.4"
+  },
+  "keywords": [
+    "gulp",
+    "sass",
+    "autoprefixer",
+    "browsersync"
+  ]
+}
