@@ -38,7 +38,7 @@
         <div class="form-group">
           <div class="input-group">
             <input ng-change="showStates()" ng-model="selectedState" type="text" class="form-control selected-city">
-            <div class="input-group-btn">
+            <div class="input-group-btn show-list">
               <ul class="dropdown-menu dropdown-menu-center list-unstyled list-group">
                 <li class="list-group-item" ng-repeat="state in stateData | filter: selectedState" ng-click="selectState($index)">{{state}}</li>
               </ul>

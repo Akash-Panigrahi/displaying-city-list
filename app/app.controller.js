@@ -46,15 +46,17 @@
       // }
 
       $scope.showStates = function() {
-        var isOpen = $('.selected-city div').hasClass('open');
+        var isOpen = $('.show-list').hasClass('open');
         console.log(isOpen);
         if(isOpen == false) {
-          console.log(isOpen);
-          $('.selected-city div').addClass('open');
+          console.log('before: '+isOpen);
+          $('.show-list').addClass('open');
+          console.log('after: '+isOpen);
         }
         else {
-          console.log(isOpen);
-          $('.selected-city div').removeClass('open');
+          console.log('before: '+isOpen);
+          $('.show-list').removeClass('open');
+          console.log('after: '+isOpen);
         }
       }
 
