@@ -1,7 +1,31 @@
+body {
+  padding: 30px 0px;
+}
+
 .dropdown-menu {
   padding: 0px;
+  margin: 0px;
 }
 
 .dropdown-menu li:hover {
-  border-left: 3px solid #59C8E4;
+  border-left: 3px solid #4169E1;
+  background: #ccc;
+}
+
+.show-btn {
+  position: relative;
+  top: 5px;
+  float: right;
+  transition: all 0.1s ease-in-out;
+}
+
+.show-btn:hover {
+  background-color: #1E90FF;
+  opacity: 0.5px;
+  text-decoration: bold;
+  font-weight: 200;
+  color: white;
+  border-bottom: 2px solid #4169E1;
+  border-radius: 0px;
+  box-shadow: 0px 4px 2px #aaaaaa;
 }

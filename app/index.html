@@ -26,32 +26,33 @@
 
 </head>
 
-<body>
+<body ng-cloak>
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-  <div class="container" ng-container='DisplayingCityList'>
+  <div class="container" ng-controller='DisplayingCityList'>
 
     <div class="row">
       <div class="select-state col-sm-3 col-xs-3">
         <div class="form-group">
           <div class="input-group">
-            <input ng-model="selectedCity" type="text" class="form-control selected-city">
+            <input ng-change="showStates()" ng-model="selectedState" type="text" class="form-control selected-city">
             <div class="input-group-btn">
               <ul class="dropdown-menu dropdown-menu-center list-unstyled list-group">
-                <li class="list-group-item" ng-repeat="(state, city) in $ctrl.cities" ng-click="selectCity($index)">{{state}}</li>
+                <li class="list-group-item" ng-repeat="state in stateData | filter: selectedState" ng-click="selectState($index)">{{state}}</li>
               </ul>
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <span class="caret"></span>
               </button>
             </div>
           </div>
+          <!-- <button type="button" class="btn show-btn">Show Cities</button> -->
         </div>
       </div>
       <div class="show-cities col-sm-9 col-xs-9">
         <ul class="cities list-unstyled list-group">
-          <li ng-repeat="(city,state) in $ctrl.cities track by $index | objectFilter:selectedCity">{{city}}</li>
+          <li class="list-group-item" ng-repeat="city in cityData track by $index">{{city}}</li>
         </ul>
       </div>
     </div>
