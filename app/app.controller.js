@@ -2,6 +2,12 @@
 (function () {
   'use strict';
 
+  var key_codes = {
+    topArrow: 38,
+    bottomArrow: 40
+  }
+
+
   angular.
     module('ngHtml').
     controller('DisplayingCityList', ['$http', '$scope', DisplayingCityList]);
@@ -10,57 +16,67 @@
 
     $scope.cityData = [];
     $scope.stateData = [];
+    $scope.isStatePresent = false;
+    // $scope.isFocused = false;
 
     $http.get('state-city.json')
-      .then(function(response) {
+      .then(function (response) {
         $scope.stateCitiesData = response.data;
 
         $scope.stateData = [];
-  
-        angular.forEach($scope.stateCitiesData, function(city, state) {
-            
+
+        angular.forEach($scope.stateCitiesData, function (city, state) {
+
           $scope.stateData.push(state);
-          
+
         });
-    });
-
-    $scope.selectState = function(index) {
-
-      var count = 0;
-      $scope.cityData = [];
-
-      angular.forEach($scope.stateCitiesData, function(city, state) {
-
-        if(count == index) {
-          $scope.selectedState = state.toString();
-          angular.forEach(city, function(value, key) {
-            $scope.cityData.push(value);
-          });
-        }
-
-        count++;
       });
 
-      // $scope.toggleStatePresent = function() {
-      //   $scope.statePresent = !$scope.statePresent;
-      // }
+    $scope.selectState = function (stateName) {
 
-      $scope.showStates = function() {
-        var isOpen = $('.show-list').hasClass('open');
-        console.log(isOpen);
-        if(isOpen == false) {
-          console.log('before: '+isOpen);
-          $('.show-list').addClass('open');
-          console.log('after: '+isOpen);
+      $scope.cityData = [];
+
+      angular.forEach($scope.stateCitiesData, function (city, state) {
+
+        if (state == stateName) {
+          $scope.selectedState = state.toString();
+          angular.forEach(city, function (value, key) {
+            $scope.cityData.push(value);
+          });
+          $scope.isStatePresent = false;
         }
-        else {
-          console.log('before: '+isOpen);
-          $('.show-list').removeClass('open');
-          console.log('after: '+isOpen);
-        }
+      });
+    }
+
+    $scope.toggleStatePresent = function () {
+      $scope.isStatePresent = !$scope.isStatePresent;
+    }
+
+    $scope.showStates = function () {
+      if ($scope.isStatePresent == false && $scope.isFocused == true) {
+        $scope.isStatePresent = true;
+      }
+      else if ($scope.isStatePresent == true && $scope.isFocused == true) {
+        $scope.isStatePresent = true;
       }
 
     }
 
+    $scope.leaveDropdown = function () {
+      console.log("hey");
+      if ($scope.isStatePresent == true && $scope.isFocused == false) {
+        $scope.isStatePresent = false;
+      }
+    }
+
+    $scope.onKeyDown = function($event) {
+      $scope.isStatePresent = true;
+
+      angular.forEach(stateData, function(value, key) {
+        
+      });
+    }
+
   }
+
 })();

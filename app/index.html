@@ -19,6 +19,7 @@
 
   <!-- Sripts -->
   <script src="tools/angular/angular.js"></script>
+  <script src="tools/angular/angular-deep-blur.js"></script>
   <script src="tools/jquery/jquery-3.2.1.js"></script>
   <script src="tools/bootstrap/bootstrap.js"></script>
   <script src="app.module.js"></script>
@@ -37,12 +38,12 @@
       <div class="select-state col-sm-3 col-xs-3">
         <div class="form-group">
           <div class="input-group">
-            <input ng-change="showStates()" ng-model="selectedState" type="text" class="form-control selected-city">
+            <input ng-keydown="onKeyDown($event)" ng-change="showStates()" ng-focus="isFocused=true" ng-blur="isFocused=false" ng-model="selectedState" type="text" class="form-control selected-city">
             <div class="input-group-btn show-list">
-              <ul class="dropdown-menu dropdown-menu-center list-unstyled list-group">
-                <li class="list-group-item" ng-repeat="state in stateData | filter: selectedState" ng-click="selectState($index)">{{state}}</li>
+              <ul ng-show="isStatePresent" class="dropdown-menu dropdown-menu-center list-unstyled list-group">
+                <li class="list-group-item" ng-repeat="state in stateData | filter: selectedState" tabindex="{{$index+1}}" ng-click="selectState(state)">{{state}}</li>
               </ul>
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <button type="button" class="btn btn-default dropdown-toggle" ng-click="toggleStatePresent()" aria-expanded="false">
                 <span class="caret"></span>
               </button>
             </div>

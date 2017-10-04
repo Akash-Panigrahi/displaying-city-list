@@ -5,9 +5,15 @@ body {
 .dropdown-menu {
   padding: 0px;
   margin: 0px;
+  display: block;
 }
 
 .dropdown-menu li:hover {
+  border-left: 3px solid #4169E1;
+  background: #ccc;
+}
+
+.hovered {
   border-left: 3px solid #4169E1;
   background: #ccc;
 }
